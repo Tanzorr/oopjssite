@@ -19,7 +19,6 @@ export default class MiniSlider extends Slider {
             this.container.appendChild(this.slides[0]);
             this.decorSliders();
         }
-
     }
 
     bindTriggers(){
@@ -59,18 +58,22 @@ export default class MiniSlider extends Slider {
     }
 
     init(){
-       this.container.style.cssText = `
+        try {
+            this.container.style.cssText = `
                 display:flex;
                 flex-wrap:wrap;
                 overflow: hidden;
                 align-items:flex-start;
        `;
-       this.bindTriggers();
-       this.decorSliders();
+            this.bindTriggers();
+            this.decorSliders();
+            if(this.autoplay){
+                setInterval(()=>{this.nextSlide()}, 5000);
+            }
+        }catch (e){
 
-       if(this.autoplay){
-           setInterval(()=>{this.nextSlide()}, 5000);
-       }
+        }
+
     }
 
 
